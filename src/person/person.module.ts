@@ -4,6 +4,7 @@ import { PersonService } from "./person.service";
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PersonRepository } from "./repository/person.repository";
 import { PersonEntity } from "./entity/person.entity";
+import {GetPersonPipe} from "./pipe/get-person.pipe";
 
 
 @Module({
@@ -11,7 +12,7 @@ import { PersonEntity } from "./entity/person.entity";
         TypeOrmModule.forFeature([PersonEntity])
     ],
     controllers: [PersonController],
-    providers: [PersonService, PersonRepository],
+    providers: [PersonService, PersonRepository, GetPersonPipe],
     exports: [PersonService]
 })
 
