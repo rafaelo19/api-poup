@@ -1,15 +1,32 @@
-FROM rafaelo19/node:17.0.1
+FROM rafaelo19/node:17.0.1 As development
 
-WORKDIR /home/node/app
+WORKDIR /usr/src/app
 
-COPY package*.json .
+COPY package*.json ./
+
+RUN yarn install --production=false
 
 COPY . .
 
-RUN yarn install
+RUN yarn build
 
-COPY --chown=node:node . .
+FROM rafaelo19/node:17.0.1 as production
+
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN yarn install --production=true
+
+COPY . .
 
 USER node
 
-CMD [ "yarn", "start" ]
+COPY --chown=node:node . .
+
+COPY --from=development /usr/src/app/dist ./dist
+
+CMD ["node", "dist/main"]
