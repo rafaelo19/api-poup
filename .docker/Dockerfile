@@ -1,4 +1,4 @@
-FROM rafaelo19/node:17.0.1 As development
+FROM rafaelo19/node:17.0.1 as development
 
 WORKDIR /usr/src/app
 
