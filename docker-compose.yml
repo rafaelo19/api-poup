@@ -5,11 +5,13 @@ services:
     build:
       context: .
       dockerfile: .docker/Dockerfile
+      target: development
     container_name: api-poup
     ports:
       - "3000:3000"
     volumes:
-      - .:/home/node/app
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
     depends_on:
       - database
     links:
