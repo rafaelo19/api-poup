@@ -1,0 +1,15 @@
+[{
+        "name": "default",
+        "type": "postgres",
+        "host": "localhost",
+        "port": 5432,
+        "username": "admin",
+        "password": "admin",
+        "database": "poup",
+        "entities": ["./dist/**/entity/*.entity.{js, ts}"],
+        "migrations": ["./dist/migrations/*.js"],
+        "cli": {
+          "migrationsDir": "./src/migrations/"
+        },
+        "synchronize": true
+}]
