@@ -11,7 +11,9 @@ export class PersonEntity extends BaseEntity {
     @Column({type: 'varchar', length: 14})
     identificacao: string
 
-    constructor(id: string, nome: string, identificacao: string) {
+    constructor(id: string,
+                nome: string,
+                identificacao: string) {
         super()
         this.id = id
         this.nome = nome
