@@ -1,22 +1,19 @@
 import { BaseEntity, Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { v4 as uuid } from 'uuid';
 
 @Entity({schema: 'cad', name: 'pessoa'})
 export class PersonEntity extends BaseEntity {
     @PrimaryGeneratedColumn("uuid")
-    id: string
+    id: string = null
 
     @Column({type: 'varchar', length: 100})
-    nome: string
+    nome: string = null
 
     @Column({type: 'varchar', length: 14})
-    identificacao: string
+    identificacao: string = null
 
-    constructor(id: string,
-                nome: string,
-                identificacao: string) {
+    constructor() {
         super()
-        this.id = id
-        this.nome = nome
-        this.identificacao = identificacao
+        this.id = uuid();
     }
 }
