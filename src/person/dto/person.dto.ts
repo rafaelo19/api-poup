@@ -1,9 +1,9 @@
-import {UserDto} from "./user.dto";
+import { UserDto } from './user.dto';
 
 export class PersonDto {
-    nome: string
+  nome: string;
 
-    identificacao: string
+  identificacao: string;
 
-    usuario: UserDto
+  usuario: UserDto;
 }

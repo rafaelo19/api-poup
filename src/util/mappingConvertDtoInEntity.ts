@@ -1,4 +1,4 @@
-export function convertDtoInEntity(dto, entity): any {
+export function mappingDtoInEntity(dto, entity): any {
   Object.keys(dto).map(function (keyDto) {
     Object.keys(entity).map(function (keyEntity) {
       if (keyDto == keyEntity) {
