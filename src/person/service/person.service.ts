@@ -31,8 +31,6 @@ export class PersonService {
 
   async getPersonAndUserByIdController(id: string): Promise<PersonDto> {
     const person = await this.getPersonAndUserById(id);
-    const personDto = mappingObject(person, new PersonDto());
-    personDto.user = mappingObject(person.user, new UserDto());
-    return personDto;
+    return mappingObject(person.user, new UserDto());
   }
 }
