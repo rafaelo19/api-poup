@@ -2,7 +2,7 @@ import { Injectable, Inject } from "@nestjs/common";
 import { PersonEntity } from "./entity/person.entity";
 import { PersonRepository } from "./repository/person.repository";
 import { PersonDto} from "./dto/person.dto";
-import { InjectRepository } from "@nestjs/typeorm";
+import { convertDtoInEntity } from "../util/convertDtoEntity";
 
 @Injectable()
 export class PersonService {
@@ -17,7 +17,9 @@ export class PersonService {
     }
 
     async insert (personDto: PersonDto): Promise<PersonEntity> {
-        return await this.personRepository.insertPerson(personDto);
+        let person = new PersonEntity();
+        person = convertDtoInEntity(personDto, person);
+        return await this.personRepository.insertPerson(person);
     }
 
 }
