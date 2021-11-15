@@ -1,5 +1,5 @@
 import { Injectable, PipeTransform, HttpException, HttpStatus } from '@nestjs/common';
-import { PersonService } from "../person.service";
+import { PersonService } from "../service/person.service";
 import { MessageException } from "../../shared/enum/message-exception";
 
 @Injectable()
