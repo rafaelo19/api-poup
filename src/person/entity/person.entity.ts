@@ -4,6 +4,7 @@ import {
   Column,
   PrimaryGeneratedColumn,
   OneToOne,
+  Exclusion,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { UserEntity } from '../../user/entity/user.entity';

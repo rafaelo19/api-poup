@@ -1,9 +1,13 @@
 import { UserDto } from './user.dto';
+import { Expose } from 'class-transformer';
 
 export class PersonDto {
-  nome: string;
+  @Expose({ name: 'name' })
+  nome: string = null;
 
-  identificacao: string;
+  @Expose({ name: 'identify' })
+  identificacao: string = null;
 
-  usuario: UserDto;
+  @Expose({ name: 'user' })
+  usuario: UserDto = null;
 }
