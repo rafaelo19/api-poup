@@ -10,17 +10,25 @@ export class PersonRepository {
     private readonly personRepository: Repository<PersonEntity>,
   ) {}
 
-  async getById(id: string): Promise<PersonEntity> {
+  async insertPerson(person: PersonEntity): Promise<PersonEntity> {
     try {
-      return await this.personRepository.findOne(id, { relations: ['user'] });
+      return await this.personRepository.save(person);
     } catch (error) {
       console.log(error.message);
     }
   }
 
-  async insertPerson(person: PersonEntity): Promise<PersonEntity> {
+  async getById(id: string): Promise<PersonEntity> {
     try {
-      return await this.personRepository.save(person);
+      return await this.personRepository.findOne(id);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  async getPersonAndUserById(id: string): Promise<PersonEntity> {
+    try {
+      return await this.personRepository.findOne(id, { relations: ['user'] });
     } catch (error) {
       console.log(error.message);
     }

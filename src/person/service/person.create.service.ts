@@ -2,7 +2,7 @@ import { PersonDto } from '../dto/person.dto';
 import { Inject, Injectable } from '@nestjs/common';
 import { PersonService } from './person.service';
 import { PersonEntity } from '../entity/person.entity';
-import { mappingDtoInEntity } from '../../util/mappingConvertDtoInEntity';
+import { mappingObject } from '../../util/mapping.object';
 import { UserService } from '../../user/service/user.service';
 import { UserEntity } from '../../user/entity/user.entity';
 
@@ -15,10 +15,10 @@ export class PersonCreateService {
 
   async createPerson(personDto: PersonDto): Promise<PersonEntity> {
     let person = new PersonEntity();
-    person = mappingDtoInEntity(personDto, person);
+    person = mappingObject(personDto, person);
 
     let user = new UserEntity();
-    user = mappingDtoInEntity(personDto.usuario, user);
+    user = mappingObject(personDto.usuario, user);
     person.user = user;
     return await this.personService.insert(person);
   }
