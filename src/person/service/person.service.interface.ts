@@ -8,7 +8,7 @@ export interface PersonServiceInterface {
     getById(id: string): Promise<PersonEntity>
 }
 
-export interface PersonServiceController extends PersonServiceInterface
+export interface PersonServiceControllerInterface extends PersonServiceInterface
 {
     getByIdController(id: string): Promise<PersonDto>
 

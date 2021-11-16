@@ -4,10 +4,10 @@ import { PersonRepository } from '../repository/person.repository';
 import { PersonDto } from '../dto/person.dto';
 import { mappingObject } from '../../util/mapping.object';
 import { UserDto } from '../dto/user.dto';
-import {PersonServiceController} from "./person.service.interface";
+import {PersonServiceControllerInterface} from "./person.service.interface";
 
 @Injectable()
-export class PersonService implements PersonServiceController {
+export class PersonService implements PersonServiceControllerInterface {
   constructor(
     @Inject(PersonRepository)
     private readonly personRepository: PersonRepository,
