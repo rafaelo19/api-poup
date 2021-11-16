@@ -15,14 +15,16 @@ import { PersonCreateService } from './service/person.create.service';
 import {
   PersonCreateServiceInterface,
   PersonServiceControllerInterface,
-} from "./service/person.service.interface";
+} from './service/person.service.interface';
 
 @Controller({ path: '/persons' })
 @UseInterceptors(ClassSerializerInterceptor)
 export class PersonController {
   constructor(
-    @Inject(PersonService) private readonly personService: PersonServiceControllerInterface,
-    @Inject(PersonCreateService) private readonly personCreate: PersonCreateServiceInterface,
+    @Inject(PersonService)
+    private readonly personService: PersonServiceControllerInterface,
+    @Inject(PersonCreateService)
+    private readonly personCreate: PersonCreateServiceInterface,
   ) {}
 
   @Post()

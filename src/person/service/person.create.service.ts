@@ -5,7 +5,7 @@ import { PersonEntity } from '../entity/person.entity';
 import { mappingObject } from '../../util/mapping.object';
 import { UserService } from '../../user/service/user.service';
 import { UserEntity } from '../../user/entity/user.entity';
-import {PersonCreateServiceInterface} from "./person.service.interface";
+import { PersonCreateServiceInterface } from './person.service.interface';
 
 @Injectable()
 export class PersonCreateService implements PersonCreateServiceInterface {

@@ -1,5 +1,5 @@
 import { UserDto } from './user.dto';
-import {Exclude, Expose} from 'class-transformer';
+import { Exclude, Expose } from 'class-transformer';
 
 export class PersonDto {
   @Expose({ name: 'name' })
