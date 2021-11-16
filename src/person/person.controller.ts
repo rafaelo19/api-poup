@@ -12,19 +12,20 @@ import { PersonDto } from './dto/person.dto';
 import { PersonService } from './service/person.service';
 import { GetPersonPipe } from './pipe/get-person.pipe';
 import { PersonCreateService } from './service/person.create.service';
+import {PersonServiceController} from "./service/person.service.interface";
 
 @Controller({ path: '/persons' })
 @UseInterceptors(ClassSerializerInterceptor)
 export class PersonController {
   constructor(
-    @Inject(PersonService) private readonly personService: PersonService,
+    @Inject(PersonService) private readonly personService: PersonServiceController,
     @Inject(PersonCreateService)
     private readonly personCreate: PersonCreateService,
   ) {}
 
   @Post()
   postPerson(@Body() personDto: PersonDto) {
-    this.personCreate.createPerson(personDto);
+    this.personCreate.personCreate(personDto);
   }
 
   @Get('/:id')

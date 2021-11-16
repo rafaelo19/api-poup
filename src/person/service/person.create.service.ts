@@ -5,15 +5,16 @@ import { PersonEntity } from '../entity/person.entity';
 import { mappingObject } from '../../util/mapping.object';
 import { UserService } from '../../user/service/user.service';
 import { UserEntity } from '../../user/entity/user.entity';
+import {PersonCreateServiceInterface} from "./person.service.interface";
 
 @Injectable()
-export class PersonCreateService {
+export class PersonCreateService implements PersonCreateServiceInterface {
   constructor(
     @Inject(PersonService) private readonly personService: PersonService,
     @Inject(UserService) private readonly userService: UserService,
   ) {}
 
-  async createPerson(personDto: PersonDto): Promise<PersonEntity> {
+  async personCreate(personDto: PersonDto): Promise<PersonEntity> {
     let person = new PersonEntity();
     person = mappingObject(personDto, person);
 
