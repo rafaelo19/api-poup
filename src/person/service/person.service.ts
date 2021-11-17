@@ -5,7 +5,7 @@ import { PersonDto } from '../dto/person.dto';
 import { mappingObject } from '../../util/mapping.object';
 import { UserDto } from '../dto/user.dto';
 import { PersonServiceControllerInterface } from './person.service.interface';
-import {PersonRepositoryInterface} from "../repository/person.repository.interface";
+import { PersonRepositoryInterface } from '../repository/person.repository.interface';
 
 @Injectable()
 export class PersonService implements PersonServiceControllerInterface {
