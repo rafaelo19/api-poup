@@ -5,16 +5,17 @@ import { PersonDto } from '../dto/person.dto';
 import { mappingObject } from '../../util/mapping.object';
 import { UserDto } from '../dto/user.dto';
 import { PersonServiceControllerInterface } from './person.service.interface';
+import {PersonRepositoryInterface} from "../repository/person.repository.interface";
 
 @Injectable()
 export class PersonService implements PersonServiceControllerInterface {
   constructor(
     @Inject(PersonRepository)
-    private readonly personRepository: PersonRepository,
+    private readonly personRepository: PersonRepositoryInterface,
   ) {}
 
   async insert(person: PersonEntity): Promise<PersonEntity> {
-    return await this.personRepository.insertPerson(person);
+    return await this.personRepository.insert(person);
   }
 
   async getById(id: string): Promise<PersonEntity> {
