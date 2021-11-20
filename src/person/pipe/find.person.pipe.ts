@@ -8,7 +8,7 @@ import { PersonService } from '../service/person.service';
 import { MessageException } from '../../shared/enum/message-exception';
 
 @Injectable()
-export class GetPersonPipe implements PipeTransform {
+export class FindPersonPipe implements PipeTransform {
   constructor(private personService: PersonService) {}
 
   async transform(value: string): Promise<any> {

@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { PersonDto } from './dto/person.dto';
 import { PersonService } from './service/person.service';
-import { GetPersonPipe } from './pipe/get-person.pipe';
+import { FindPersonPipe } from './pipe/find.person.pipe';
 import { PersonCreateService } from './service/person.create.service';
 import {
   PersonCreateServiceInterface,
@@ -33,13 +33,13 @@ export class PersonController {
   }
 
   @Get('/:id')
-  getById(@Param('id', GetPersonPipe) id: string): Promise<PersonDto> {
+  getById(@Param('id', FindPersonPipe) id: string): Promise<PersonDto> {
     return this.personService.getByIdController(id);
   }
 
   @Get('/:id/users')
   getPersonAndUserById(
-    @Param('id', GetPersonPipe) id: string,
+    @Param('id', FindPersonPipe) id: string,
   ): Promise<PersonDto> {
     return this.personService.getPersonAndUserByIdController(id);
   }

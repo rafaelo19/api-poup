@@ -4,7 +4,7 @@ import { PersonService } from './service/person.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PersonRepository } from './repository/person.repository';
 import { PersonEntity } from './entity/person.entity';
-import { GetPersonPipe } from './pipe/get-person.pipe';
+import { FindPersonPipe } from './pipe/find.person.pipe';
 import { PersonCreateService } from './service/person.create.service';
 import { UserModule } from '../user/user.module';
 
@@ -14,7 +14,7 @@ import { UserModule } from '../user/user.module';
   providers: [
     PersonService,
     PersonRepository,
-    GetPersonPipe,
+    FindPersonPipe,
     PersonCreateService,
   ],
   exports: [PersonService],
