@@ -26,4 +26,12 @@ export class UserRepository implements UserRepositoryInterface {
       console.log(error);
     }
   }
+
+  async getByLogin(login: string): Promise<UserEntity> {
+    try {
+      return await this.userRepository.findOne( {login: login});
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
 }

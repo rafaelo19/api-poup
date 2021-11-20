@@ -16,4 +16,8 @@ export class UserService implements UserServiceInterface {
   getById(id: string): Promise<UserEntity> {
     return this.userRepository.getById(id);
   }
+
+  getByLogin(login: string): Promise<UserEntity> {
+    return this.userRepository.getByLogin(login);
+  }
 }
