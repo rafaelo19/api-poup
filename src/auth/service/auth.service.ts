@@ -1,12 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { AuthDto } from '../dto/authDto';
 import { mappingObject } from '../../util/mapping.object';
 import { PayloadToken } from '../dto/payload.token';
+import { MessageException } from '../../shared/enum/message-exception';
 require('dotenv/config');
 
 @Injectable()
 export class AuthService {
-  jwt = require('jsonwebtoken');
+  private jwt = require('jsonwebtoken');
 
   createToken(auth: AuthDto): string {
     return this.jwt.sign(
@@ -37,7 +38,10 @@ export class AuthService {
         new PayloadToken(),
       );
     } catch (error) {
-      console.log(error.message);
+      throw new HttpException(
+        MessageException.NOT_AUTHENTICATED,
+        HttpStatus.UNAUTHORIZED,
+      );
     }
   }
 }
