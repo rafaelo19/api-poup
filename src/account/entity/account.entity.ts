@@ -3,7 +3,6 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToOne,
   JoinColumn,
   OneToMany,
 } from 'typeorm';
@@ -21,7 +20,7 @@ export class AccountEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 2 })
   digito: string;
 
-  @OneToMany((type) => ModalityEntity, (modalidade) => modalidade.conta)
+  @OneToMany(() => ModalityEntity, (modalidade) => modalidade.conta)
   @JoinColumn({ name: 'id', referencedColumnName: 'conta_id' })
   modalidade: ModalityEntity[];
 

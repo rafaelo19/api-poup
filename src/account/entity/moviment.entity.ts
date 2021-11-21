@@ -23,7 +23,7 @@ export class MovimentEntity extends BaseEntity {
   @Column({ name: 'modalidade_id', type: 'varchar' })
   modalidade_id: string;
 
-  @ManyToOne((type) => ModalityEntity, (modalidade) => modalidade.movimento)
+  @ManyToOne(() => ModalityEntity, (modalidade) => modalidade.movimento)
   @JoinColumn({ name: 'modalidade_id', referencedColumnName: 'id' })
   modalidade: ModalityEntity;
 
