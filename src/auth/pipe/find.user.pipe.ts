@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from '../../user/service/user.service';
 import { UserServiceInterface } from '../../user/service/user.service.interface';
-import { MessageException } from '../../shared/enum/message-exception';
+import { MessageException } from '../../infrastructure/shared/enum/message-exception';
 
 @Injectable()
 export class FindUserPipe implements PipeTransform {
