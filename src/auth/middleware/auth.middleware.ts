@@ -4,7 +4,7 @@ import {
   Inject,
   NestMiddleware,
 } from '@nestjs/common';
-import { MessageException } from '../../shared/enum/message-exception';
+import { MessageException} from "../../infrastructure/shared/enum/message-exception";
 import { AuthService } from '../service/auth.service';
 
 export class AuthMiddleware implements NestMiddleware {
