@@ -9,6 +9,7 @@ import { PersonCreateService } from './service/person.create.service';
 import { UserModule } from '../user/user.module';
 import { AuthMiddleware } from '../auth/middleware/auth.middleware';
 import { AuthModule } from '../auth/auth.module';
+import { ResponseInterceptor } from '../infrastructure/interceptor/response.interceptor';
 
 @Module({
   imports: [UserModule, AuthModule, TypeOrmModule.forFeature([PersonEntity])],
@@ -18,6 +19,7 @@ import { AuthModule } from '../auth/auth.module';
     PersonRepository,
     FindPersonPipe,
     PersonCreateService,
+    ResponseInterceptor,
   ],
   exports: [PersonService],
 })

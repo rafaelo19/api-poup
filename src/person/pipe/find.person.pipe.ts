@@ -5,7 +5,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { PersonService } from '../service/person.service';
-import { MessageException } from '../../shared/enum/message-exception';
+import { MessageException } from '../../infrastructure/shared/enum/message-exception';
 
 @Injectable()
 export class FindPersonPipe implements PipeTransform {
