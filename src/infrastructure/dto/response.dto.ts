@@ -1,5 +1,9 @@
+import { Expose } from 'class-transformer';
+
 export class ResponseDto {
-  status_code: number;
+  @Expose({name: 'statusCode'})
+  statusCode: number;
+
+  @Expose({name: 'data'})
   data: any;
-  error: any;
 }

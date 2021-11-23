@@ -4,10 +4,9 @@ import {
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
-import {catchError, map, Observable, throwError} from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {
   convertReponseCorrect,
-  convertResponseError,
 } from '../util/response.convert';
 
 @Injectable()
@@ -20,12 +19,6 @@ export class ResponseInterceptor implements NestInterceptor {
 
     return next.handle().pipe(
       map((data) => convertReponseCorrect(statusCode, data)),
-
-      catchError(async (error) => {
-            convertResponseError(error.status, error.message)
-            return throwError(error)
-          }
-      ),
     );
   }
 }
