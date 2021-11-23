@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Post,
-  Get,
-  Body,
-  Param,
-  Inject,
-} from '@nestjs/common';
+import { Controller, Post, Get, Body, Param, Inject } from '@nestjs/common';
 import { PersonDto } from './dto/person.dto';
 import { PersonService } from './service/person.service';
 import { FindPersonPipe } from './pipe/find.person.pipe';

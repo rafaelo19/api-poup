@@ -4,10 +4,8 @@ import {
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
-import {map, Observable} from 'rxjs';
-import {
-  convertReponseCorrect,
-} from '../util/response.convert';
+import { map, Observable } from 'rxjs';
+import { convertReponseCorrect } from '../util/response.convert';
 
 @Injectable()
 export class ResponseInterceptor implements NestInterceptor {
@@ -17,8 +15,8 @@ export class ResponseInterceptor implements NestInterceptor {
   ): Promise<Observable<any>> {
     const { statusCode } = await context.switchToHttp().getResponse();
 
-    return next.handle().pipe(
-      map((data) => convertReponseCorrect(statusCode, data)),
-    );
+    return next
+      .handle()
+      .pipe(map((data) => convertReponseCorrect(statusCode, data)));
   }
 }

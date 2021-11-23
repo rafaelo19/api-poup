@@ -1,7 +1,7 @@
-import {NestFactory, Reflector} from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ResponseInterceptor } from './infrastructure/interceptor/response.interceptor';
-import {ClassSerializerInterceptor} from "@nestjs/common";
+import { ClassSerializerInterceptor } from '@nestjs/common';
 
 declare const module: any;
 
