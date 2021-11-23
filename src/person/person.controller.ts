@@ -16,9 +16,10 @@ import {
   PersonCreateServiceInterface,
   PersonServiceControllerInterface,
 } from './service/person.service.interface';
+import {AuthInterceptor} from "../auth/interceptor/auth.interceptor";
 
 @Controller({ path: '/persons' })
-@UseInterceptors(ClassSerializerInterceptor)
+@UseInterceptors(ClassSerializerInterceptor, AuthInterceptor)
 export class PersonController {
   constructor(
     @Inject(PersonService)

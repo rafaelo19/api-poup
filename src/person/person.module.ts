@@ -23,8 +23,4 @@ import { ResponseInterceptor } from '../infrastructure/interceptor/response.inte
   ],
   exports: [PersonService],
 })
-export class PersonModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).forRoutes('persons');
-  }
-}
+export class PersonModule {}
