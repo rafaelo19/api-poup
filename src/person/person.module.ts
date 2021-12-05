@@ -10,9 +10,10 @@ import { UserModule } from '../user/user.module';
 import { AuthModule } from '../auth/auth.module';
 import { ResponseInterceptor } from '../infrastructure/interceptor/response.interceptor';
 import {AuthMiddleware} from "../auth/middleware/auth.middleware";
+import {AccountModule} from "../account/account.module";
 
 @Module({
-  imports: [UserModule, AuthModule, TypeOrmModule.forFeature([PersonEntity])],
+  imports: [UserModule, AccountModule, AuthModule, TypeOrmModule.forFeature([PersonEntity])],
   controllers: [PersonController],
   providers: [
     PersonService,

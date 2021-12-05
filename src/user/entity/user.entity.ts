@@ -23,7 +23,7 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'uuid' })
   pessoa_id: string = null;
 
-  @OneToOne(() => PersonEntity, (pessoa) => pessoa.user)
+  @OneToOne(() => PersonEntity, (pessoa) => pessoa.usuario)
   @JoinColumn({ name: 'pessoa_id', referencedColumnName: 'id' })
   pessoa: PersonEntity;
 

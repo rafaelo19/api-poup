@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { UserEntity } from '../../user/entity/user.entity';
+import {AccountEntity} from "../../account/entity/account.entity";
 
 @Entity({ schema: 'cad', name: 'pessoa' })
 export class PersonEntity extends BaseEntity {
@@ -20,7 +21,10 @@ export class PersonEntity extends BaseEntity {
   identificacao: string = null;
 
   @OneToOne(() => UserEntity, (user) => user.pessoa, { cascade: true })
-  user: UserEntity;
+  usuario: UserEntity;
+
+  @OneToOne(() => AccountEntity, (person) => person.pessoa, { cascade: true })
+  conta: AccountEntity;
 
   constructor() {
     super();
