@@ -1,17 +1,24 @@
 import {
+  CallHandler,
+  ExecutionContext,
   HttpException,
   HttpStatus,
   Inject,
-  NestMiddleware,
+  NestInterceptor,
 } from '@nestjs/common';
 import { MessageException } from '../../infrastructure/shared/enum/message-exception';
 import { AuthService } from '../service/auth.service';
 import { isEmpty } from '@nestjs/common/utils/shared.utils';
+import { Observable } from 'rxjs';
 
-export class AuthMiddleware implements NestMiddleware {
+export class AuthInterceptor implements NestInterceptor {
   constructor(@Inject(AuthService) private readonly authService: AuthService) {}
 
-  use(req: any, res: any, next: () => void): any {
+  async intercept(
+    context: ExecutionContext,
+    next: CallHandler<any>,
+  ): Promise<Observable<any>> {
+    const req = await context.switchToHttp().getRequest();
     if (!req.headers.authorization) {
       throw new HttpException(
         MessageException.NOT_AUTHENTICATED,
@@ -29,6 +36,7 @@ export class AuthMiddleware implements NestMiddleware {
     this.authService.decodeToken(
       req.headers.authorization.replace('Bearer ', ''),
     );
-    next();
+
+    return next.handle();
   }
 }

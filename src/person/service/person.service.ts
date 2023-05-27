@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@nestjs/common';
 import { PersonEntity } from '../entity/person.entity';
 import { PersonRepository } from '../repository/person.repository';
 import { PersonDto } from '../dto/person.dto';
-import { mappingObject } from '../../util/mapping.object';
+import { mappingObject } from '../../infrastructure/util/mapping.object';
 import { UserDto } from '../dto/user.dto';
 import { PersonServiceControllerInterface } from './person.service.interface';
 import { PersonRepositoryInterface } from '../repository/person.repository.interface';

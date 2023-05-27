@@ -1,13 +1,4 @@
-import {
-  Controller,
-  Post,
-  Get,
-  Body,
-  Param,
-  Inject,
-  UseInterceptors,
-  ClassSerializerInterceptor,
-} from '@nestjs/common';
+import { Controller, Post, Get, Body, Param, Inject } from '@nestjs/common';
 import { PersonDto } from './dto/person.dto';
 import { PersonService } from './service/person.service';
 import { FindPersonPipe } from './pipe/find.person.pipe';
@@ -18,7 +9,6 @@ import {
 } from './service/person.service.interface';
 
 @Controller({ path: '/persons' })
-@UseInterceptors(ClassSerializerInterceptor)
 export class PersonController {
   constructor(
     @Inject(PersonService)
