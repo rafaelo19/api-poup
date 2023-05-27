@@ -1,32 +1,39 @@
-FROM rafaelo19/node:17.0.1 as development
+FROM node:17.1.0-alpine as development
 
 WORKDIR /usr/src/app
-
-COPY package*.json ./
-
-RUN yarn install --production=false
 
 COPY . .
 
-RUN yarn build
+RUN yarn install
 
-FROM rafaelo19/node:17.0.1 as production
+EXPOSE 3000
 
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
+CMD ["yarn", "start:dev"]
+
+
+FROM development as build
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY . .
+
+RUN yarn
+
+RUN yarn run build
+
+RUN ls -la dist
+
+
+FROM node:17.1.0-alpine as production
+
+RUN mkdir -p /usr/src/app/dist
+
+WORKDIR /usr/src/app
+
+COPY . .
 
 RUN yarn install --production=true
 
-COPY . .
+COPY --from=build /usr/src/app/dist ./dist
 
-USER node
-
-COPY --chown=node:node . .
-
-COPY --from=development /usr/src/app/dist ./dist
-
-CMD ["node", "dist/main"]
+CMD ["yarn", "start:dev"]

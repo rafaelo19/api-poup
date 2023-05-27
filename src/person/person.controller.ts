@@ -1,17 +1,19 @@
-import {Controller, Post, Get, Body, Param} from "@nestjs/common";
-import {PersonDto} from "./dto/person.dto";
-import { PersonService } from "./person.service";
-import {PersonEntity} from "./entity/person.entity";
-import {GetPersonPipe} from "./pipe/get-person.pipe";
+import {Controller, Post, Get, Body, Param, Inject} from "@nestjs/common";
+import { PersonDto } from "./dto/person.dto";
+import { PersonService } from "./service/person.service";
+import { PersonEntity } from "./entity/person.entity";
+import { GetPersonPipe } from "./pipe/get-person.pipe";
+import { PersonCreateService } from "./service/person.create.service";
 
 @Controller({path: '/persons'})
 export class PersonController {
-    constructor(private personService: PersonService) {
+    constructor(@Inject(PersonService) private readonly personService: PersonService,
+                @Inject(PersonCreateService) private readonly personCreate: PersonCreateService) {
     }
 
     @Post()
     postPerson (@Body() personDto : PersonDto) {
-        this.personService.insert(personDto)
+        this.personCreate.createPerson(personDto)
     }
 
     @Get("/:id")
