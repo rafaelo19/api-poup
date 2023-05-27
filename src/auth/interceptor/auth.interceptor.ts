@@ -25,6 +25,7 @@ export class AuthInterceptor implements NestInterceptor {
         HttpStatus.UNAUTHORIZED,
       );
     }
+
     if (!isEmpty(req.headers.authorization)) {
       if (req.headers.authorization.search('Bearer ') == -1) {
         throw new HttpException(
@@ -33,9 +34,8 @@ export class AuthInterceptor implements NestInterceptor {
         );
       }
     }
-    this.authService.decodeToken(
-      req.headers.authorization.replace('Bearer ', ''),
-    );
+    const token = req.headers.authorization.replace('Bearer ', '');
+    this.authService.decodeToken(token);
 
     return next.handle();
   }

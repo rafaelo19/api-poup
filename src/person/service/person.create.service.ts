@@ -6,6 +6,7 @@ import { mappingObject } from '../../infrastructure/util/mapping.object';
 import { UserService } from '../../user/service/user.service';
 import { UserEntity } from '../../user/entity/user.entity';
 import { PersonCreateServiceInterface } from './person.service.interface';
+import { encrypt } from '../../infrastructure/util/bcrypt';
 
 @Injectable()
 export class PersonCreateService implements PersonCreateServiceInterface {
@@ -17,9 +18,9 @@ export class PersonCreateService implements PersonCreateServiceInterface {
   async personCreate(personDto: PersonDto): Promise<PersonEntity> {
     let person = new PersonEntity();
     person = mappingObject(personDto, person);
-
     let user = new UserEntity();
     user = mappingObject(personDto.usuario, user);
+    user.senha = await encrypt(user.senha);
     person.user = user;
     return await this.personService.insert(person);
   }
