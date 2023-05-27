@@ -4,10 +4,11 @@ import {
   Column,
   PrimaryGeneratedColumn,
   JoinColumn,
-  OneToMany,
+  OneToMany, OneToOne,
 } from 'typeorm';
 import { ModalityEntity } from './modality.entity';
 import { v4 as uuid } from 'uuid';
+import {PersonEntity} from "../../person/entity/person.entity";
 
 @Entity({ schema: 'cad', name: 'conta' })
 export class AccountEntity extends BaseEntity {
@@ -20,9 +21,9 @@ export class AccountEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 2 })
   digito: string;
 
-  @OneToMany(() => ModalityEntity, (modalidade) => modalidade.conta)
-  @JoinColumn({ name: 'id', referencedColumnName: 'conta_id' })
-  modalidade: ModalityEntity[];
+  @OneToOne(() => PersonEntity, (pessoa) => pessoa.usuario)
+  @JoinColumn({ name: 'pessoa_id', referencedColumnName: 'id' })
+  pessoa: PersonEntity;
 
   constructor() {
     super();

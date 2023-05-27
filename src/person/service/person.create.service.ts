@@ -21,7 +21,7 @@ export class PersonCreateService implements PersonCreateServiceInterface {
     let user = new UserEntity();
     user = mappingObject(personDto.usuario, user);
     user.senha = await encrypt(user.senha);
-    person.user = user;
+    person.usuario = user;
     return await this.personService.insert(person);
   }
 }

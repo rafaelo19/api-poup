@@ -33,6 +33,6 @@ export class PersonService implements PersonServiceControllerInterface {
 
   async getPersonAndUserByIdController(id: string): Promise<PersonDto> {
     const person = await this.getPersonAndUserById(id);
-    return mappingObject(person.user, new UserDto());
+    return mappingObject(person.usuario, new UserDto());
   }
 }
